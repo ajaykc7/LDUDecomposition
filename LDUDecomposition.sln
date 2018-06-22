@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDUDecomposition", "LDUDecomposition\LDUDecomposition.csproj", "{8A313116-8E18-46A5-AEDF-7CC66214F2D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDUDecomposition.UnitTests", "LDUDecomposition.UnitTests\LDUDecomposition.UnitTests.csproj", "{756CCA6B-FDC7-403F-AD5C-96164FBF100C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A313116-8E18-46A5-AEDF-7CC66214F2D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A313116-8E18-46A5-AEDF-7CC66214F2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A313116-8E18-46A5-AEDF-7CC66214F2D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A313116-8E18-46A5-AEDF-7CC66214F2D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{756CCA6B-FDC7-403F-AD5C-96164FBF100C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756CCA6B-FDC7-403F-AD5C-96164FBF100C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756CCA6B-FDC7-403F-AD5C-96164FBF100C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756CCA6B-FDC7-403F-AD5C-96164FBF100C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E7CB90B-22A2-4688-B074-EDDDE0340951}
+	EndGlobalSection
+EndGlobal
