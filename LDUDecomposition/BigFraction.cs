@@ -49,7 +49,7 @@ namespace LDUDecomposition
             BigInteger denominatorB = GetDenominator(b.ToString());
 
             BigInteger lcm = GetLCM(this.denominator, denominatorB);
-            BigInteger finalNumerator = this.numerator * (lcm / this.denominator) +
+            BigInteger finalNumerator = this.numerator * (lcm / this.denominator) -
                                         numeratorB * (lcm / denominatorB);
 
             BigFraction result = new BigFraction(finalNumerator.ToString() + "/" + lcm.ToString());
