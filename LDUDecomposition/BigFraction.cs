@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Numerics;
 
 namespace LDUDecomposition
 {
+    /// <summary>
+    /// Class to represent large number in fraction format to entact efficieny. 
+    /// The number can be divided into the numerator and denominator which is separated by "/".
+    /// Both numerator and denominator are BigInteger objects.
+    /// </summary>
     public class BigFraction
     {
         private BigInteger numerator;
         private BigInteger denominator;
-
-        private BigInteger zero = new BigInteger(0);
-        private BigInteger one = new BigInteger(1);
 
         public BigFraction(string fraction)
         {
@@ -26,7 +24,6 @@ namespace LDUDecomposition
         /// </summary>
         /// <param name="b">BigFraction being added to the current BigFraction</param>
         /// <returns>result of the addition in the simplest form</returns>
-        /*
         public BigFraction Add(BigFraction b)
         {
             BigInteger numeratorB = GetNumerator(b.ToString());
@@ -36,11 +33,84 @@ namespace LDUDecomposition
             BigInteger finalNumerator = this.numerator * (lcm / this.denominator) +
                                         numeratorB * (lcm / denominatorB);
             
-            BigFraction result = finalNumerator.ToString()+"/"+lcm.ToString();
+            BigFraction result = new BigFraction(finalNumerator.ToString()+"/"+lcm.ToString());
             return GetSimplestForm(result);
 
-        }*/
+        }
         
+        /// <summary>
+        /// Method to subtract two BigFraction datatypes
+        /// </summary>
+        /// <param name="b">BigFraction being subtracted from current BigFraction</param>
+        /// <returns>result of subtraction in its simplest form</returns>
+        public BigFraction Subtract(BigFraction b)
+        {
+            BigInteger numeratorB = GetNumerator(b.ToString());
+            BigInteger denominatorB = GetDenominator(b.ToString());
+
+            BigInteger lcm = GetLCM(this.denominator, denominatorB);
+            BigInteger finalNumerator = this.numerator * (lcm / this.denominator) +
+                                        numeratorB * (lcm / denominatorB);
+
+            BigFraction result = new BigFraction(finalNumerator.ToString() + "/" + lcm.ToString());
+
+            return GetSimplestForm(result);
+        }
+
+        /// <summary>
+        /// Method to multiply two BigFraction datatypes
+        /// </summary>
+        /// <param name="b">BigFraction being multiplied from current BigFraction</param>
+        /// <returns>result of multiplication in its simplest form</returns>
+        public BigFraction Multiply(BigFraction b)
+        {
+            BigInteger numeratorB = GetNumerator(b.ToString());
+            BigInteger denominatorB = GetDenominator(b.ToString());
+
+            BigInteger finalNumerator = this.numerator * numeratorB;
+            BigInteger finalDenominator = this.denominator * denominatorB;
+
+            BigFraction result = new BigFraction(finalNumerator.ToString()+"/"+ finalDenominator.ToString());
+
+            return GetSimplestForm(result);
+        }
+
+        /// <summary>
+        /// Method to divide two BigFraction objects
+        /// </summary>
+        /// <param name="b">BigFraction object being divided from the current object</param>
+        /// <returns>result of division in its simplest form</returns>
+        public BigFraction Divide(BigFraction b)
+        {
+            /*When you divide a fraction by another fraction we multiply the dividend by the reciprocal of the divisor
+             * So, we will multiply the numerator of a with denominator of b and denominator of a with numerator of b
+             */
+            BigInteger numeratorB = GetNumerator(b.ToString());
+            BigInteger denominatorB = GetDenominator(b.ToString());
+
+            //Negate the numerator and denominator if numerator is negative
+            if(numeratorB.Sign == -1)
+            {
+                numeratorB = -numeratorB;
+                denominatorB = -denominatorB;
+            }
+
+            BigInteger finalNumerator = BigInteger.One;
+            BigInteger finalDenominator = BigInteger.One;
+            
+            if (numeratorB.IsZero)
+            {
+                finalNumerator = BigInteger.Zero;
+                finalDenominator = BigInteger.One;
+            }
+            else
+            {
+                finalNumerator = this.numerator * denominatorB;
+                finalDenominator = this.denominator * numeratorB;
+            }
+            BigFraction result = new BigFraction(finalNumerator.ToString() + "/" + finalDenominator.ToString());
+            return GetSimplestForm(result);
+        }
         /// <summary>
         /// Method to get the numerator of the BigFraction
         /// </summary>
@@ -92,6 +162,11 @@ namespace LDUDecomposition
             return b.IsZero ? BigInteger.Abs(a) : GetGCF(b, a%b);
         }
 
+        /// <summary>
+        /// Method to get the fraction in its simplest form
+        /// </summary>
+        /// <param name="frac"></param>
+        /// <returns></returns>
         private BigFraction GetSimplestForm(BigFraction frac)
         {
             BigInteger num = GetNumerator(frac.ToString());
